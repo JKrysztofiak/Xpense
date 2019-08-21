@@ -1,0 +1,98 @@
+package com.kxkriszna.xpense;
+
+import android.app.Activity;
+import android.content.Context;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import java.util.ArrayList;
+
+public class ItemListAdapter extends BaseAdapter {
+
+    Activity mActivity;
+    ArrayList<SingleItem> itemList;
+
+    public ItemListAdapter(Activity activity, ArrayList<SingleItem> list){
+        mActivity = activity;
+        itemList = list;
+    }
+
+    static class ViewHolder{
+        TextView itemName;
+        TextView itemPrice;
+        LinearLayout.LayoutParams params;
+    }
+
+    public void addItemToAdapter(SingleItem item){
+        itemList.add(item);
+    }
+
+    public void removeItemFromAdapter(){
+        if(itemList.size()!=0){
+            itemList.remove(itemList.size()-1);
+            notifyDataSetChanged();
+            Toast.makeText(mActivity, "Removed!",
+                    Toast.LENGTH_SHORT).show();
+        }
+        else{
+            Toast.makeText(mActivity, "List is empty!",
+                    Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public String getTotalAmount(){
+        double amount = 0;
+        for (SingleItem item: itemList){
+            amount+=item.getItemPrice();
+        }
+        return String.valueOf(amount);
+    }
+
+
+    @Override
+    public int getCount() {
+        return itemList.size();
+    }
+
+    @Override
+    public SingleItem getItem(int i) {
+
+        SingleItem item = itemList.get(i);
+
+        return item;
+    }
+
+    @Override
+    public long getItemId(int i) {
+        return 0;
+    }
+
+    @Override
+    public View getView(int i, View view, ViewGroup viewGroup) {
+        if(view == null) {
+            LayoutInflater inflater = (LayoutInflater) mActivity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            view = inflater.inflate(R.layout.single_item_row,viewGroup ,false);
+            final ViewHolder holder = new ViewHolder();
+            holder.itemName = (TextView) view.findViewById(R.id.singleItemNameLabel);
+            holder.itemPrice = (TextView) view.findViewById(R.id.singleItemPriceLabel);
+            holder.params = (LinearLayout.LayoutParams) holder.itemName.getLayoutParams();
+            view.setTag(holder);
+        }
+
+        final SingleItem item = getItem(i);
+        final ViewHolder holder = (ViewHolder) view.getTag();
+
+        String itemName = item.getItemName();
+        holder.itemName.setText(itemName);
+
+        String price = String.valueOf(item.getItemPrice());
+        holder.itemPrice.setText(price);
+
+        return view;
+    }
+}
