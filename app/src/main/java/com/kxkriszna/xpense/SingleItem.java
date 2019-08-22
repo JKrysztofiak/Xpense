@@ -1,6 +1,8 @@
 package com.kxkriszna.xpense;
 
-public class SingleItem {
+import java.io.Serializable;
+
+public class SingleItem implements Serializable {
 
     private String itemNameSingle;
     private double itemPriceSingle;

@@ -11,6 +11,10 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
@@ -22,6 +26,13 @@ public class MainActivity extends AppCompatActivity {
     private ListView mListView;
     private TextView mAmountSpent;
     private ItemListAdapter mAdapter;
+    private final String FILE_NAME = "itemsDB";
+
+
+    //TODO DELETE
+    private Button mSyncButton;
+    private Button mSaveButton;
+
 
     private ArrayList<SingleItem> itemList;
 
@@ -37,9 +48,39 @@ public class MainActivity extends AppCompatActivity {
         mRemoveButton = (Button) findViewById(R.id.removeItemButton);
         mAmountSpent = (TextView) findViewById(R.id.spentAmountLabel);
         mListView = (ListView) findViewById(R.id.itemListView);
+        mSyncButton = (Button) findViewById(R.id.syncButton);
+        mSaveButton = (Button) findViewById(R.id.saveButton);
+
 
         //TODO Wczytywanie wartosci z pliku
         itemList = new ArrayList<>();
+
+
+
+        mSyncButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ArrayList<SingleItem> tmpList = new ArrayList<>();
+                try {
+                    tmpList = readFromFile();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
+                }
+
+                mAdapter.addListToAdapter(tmpList);
+                mAmountSpent.setText(mAdapter.getTotalAmount());
+                mAdapter.notifyDataSetChanged();
+            }
+        });
+
+        mSaveButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                saveToFile();
+            }
+        });
 
         mAddButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,6 +98,29 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    private void saveToFile(){
+        try {
+            mAdapter.writeListToAFile(this, FILE_NAME);
+            Toast.makeText(this, "List SAVED!",
+                    Toast.LENGTH_SHORT).show();
+        } catch (IOException e) {
+            Toast.makeText(this, "Error: List NOT SAVED!!!",
+                    Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private ArrayList<SingleItem> readFromFile() throws IOException, ClassNotFoundException {
+
+        FileInputStream fis = this.openFileInput(FILE_NAME);
+        ObjectInputStream is = new ObjectInputStream(fis);
+        ArrayList<SingleItem> tmp = (ArrayList<SingleItem>) is.readObject();
+        is.close();
+        fis.close();
+
+        mAdapter.notifyDataSetChanged();
+        return tmp;
+    }
+
     private void addItem(){
         Log.d("Xpense","I SENT SOMETHING");
 
@@ -66,7 +130,6 @@ public class MainActivity extends AppCompatActivity {
         if(!nameInput.equals("") && priceInput!=0 ){
             SingleItem object = new SingleItem(nameInput,priceInput);
 
-            //itemList.add(object);
 
             mAdapter.addItemToAdapter(object);
 
@@ -87,7 +150,18 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onStart(){
         super.onStart();
+
         mAdapter = new ItemListAdapter(this,itemList);
         mListView.setAdapter(mAdapter);
     }
+
+    @Override
+    public void onStop(){
+        super.onStop();
+
+        saveToFile();
+
+
+    }
+
 }

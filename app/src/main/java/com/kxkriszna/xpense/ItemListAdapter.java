@@ -2,6 +2,7 @@ package com.kxkriszna.xpense;
 
 import android.app.Activity;
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,9 +11,16 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 public class ItemListAdapter extends BaseAdapter {
+
+
 
     Activity mActivity;
     ArrayList<SingleItem> itemList;
@@ -30,6 +38,10 @@ public class ItemListAdapter extends BaseAdapter {
 
     public void addItemToAdapter(SingleItem item){
         itemList.add(item);
+    }
+
+    public void addListToAdapter(ArrayList<SingleItem> list){
+        itemList = list;
     }
 
     public void removeItemFromAdapter(){
@@ -53,6 +65,15 @@ public class ItemListAdapter extends BaseAdapter {
         return String.valueOf(amount);
     }
 
+    public void writeListToAFile(Context context, String fileName) throws IOException {
+        Log.d("Xpense", "Proba zapisu do pliku");
+        FileOutputStream fos = context.openFileOutput(fileName, Context.MODE_PRIVATE);
+        ObjectOutputStream os = new ObjectOutputStream(fos);
+        os.writeObject(itemList);
+        Log.d("Xpense", "Udane zapisanie do pliku");
+        os.close();
+        fos.close();
+    }
 
     @Override
     public int getCount() {
