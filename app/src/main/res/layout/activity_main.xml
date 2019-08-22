@@ -54,11 +54,19 @@
         android:id="@+id/itemListView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:background="@color/primary_light"
+        android:background="@color/icons"
+        app:layout_constraintBottom_toTopOf="@id/addBoxView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/amountBoxView"
-        app:layout_constraintBottom_toTopOf="@id/addBoxView"/>
+        app:layout_constraintTop_toBottomOf="@id/amountBoxView" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="8dp"
+        android:background="@drawable/top_shadow_gradient"
+        app:layout_constraintBottom_toTopOf="@id/addBoxView"
+
+        />
 
     <LinearLayout
         android:id="@+id/addBoxView"
@@ -99,7 +107,7 @@
             android:layout_weight="1"
             android:background="@null"
             android:scaleType="fitCenter"
-            app:srcCompat="@drawable/check2" />
+            app:srcCompat="@drawable/image_selector" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

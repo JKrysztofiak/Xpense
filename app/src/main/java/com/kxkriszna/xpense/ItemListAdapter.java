@@ -42,7 +42,8 @@ public class ItemListAdapter extends BaseAdapter {
     }
 
     public void addItemToAdapter(SingleItem item){
-        itemList.add(item);
+        itemList.add(0,item);
+        notifyDataSetChanged();
     }
 
     public void addListToAdapter(ArrayList<SingleItem> list){
@@ -51,7 +52,8 @@ public class ItemListAdapter extends BaseAdapter {
 
     public void removeItemFromAdapter(){
         if(itemList.size()!=0){
-            itemList.remove(itemList.size()-1);
+            //itemList.remove(itemList.size()-1);
+            itemList.remove(0);
             notifyDataSetChanged();
             Toast.makeText(mActivity, "Removed!",
                     Toast.LENGTH_SHORT).show();
@@ -63,11 +65,16 @@ public class ItemListAdapter extends BaseAdapter {
     }
 
     public String getTotalAmount(){
+
+
         double amount = 0;
         for (SingleItem item: itemList){
             amount+=item.getItemPrice();
         }
-        return String.valueOf(amount);
+
+        String numberToString = String.format("%.2f",amount);
+
+        return numberToString;
     }
 
     public void writeListToAFile(Context context, String fileName) throws IOException {
@@ -134,8 +141,9 @@ public class ItemListAdapter extends BaseAdapter {
         String itemName = item.getItemName();
         holder.itemName.setText(itemName);
 
-        String price = String.valueOf(item.getItemPrice());
-        holder.itemPrice.setText("-"+price);
+        //String price = String.valueOf(item.getItemPrice());
+        String priceText = String.format("%.2f",item.getItemPrice());
+        holder.itemPrice.setText("-"+priceText);
 
         holder.itemDate.setText(getDate());
 
