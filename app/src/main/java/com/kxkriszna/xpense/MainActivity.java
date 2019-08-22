@@ -29,11 +29,6 @@ public class MainActivity extends AppCompatActivity {
     private final String FILE_NAME = "itemsDB";
 
 
-    //TODO DELETE
-    private Button mSyncButton;
-    private Button mSaveButton;
-
-
     private ArrayList<SingleItem> itemList;
 
 
@@ -48,39 +43,10 @@ public class MainActivity extends AppCompatActivity {
         mRemoveButton = (Button) findViewById(R.id.removeItemButton);
         mAmountSpent = (TextView) findViewById(R.id.spentAmountLabel);
         mListView = (ListView) findViewById(R.id.itemListView);
-        mSyncButton = (Button) findViewById(R.id.syncButton);
-        mSaveButton = (Button) findViewById(R.id.saveButton);
-
 
         //TODO Wczytywanie wartosci z pliku
         itemList = new ArrayList<>();
 
-
-
-        mSyncButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ArrayList<SingleItem> tmpList = new ArrayList<>();
-                try {
-                    tmpList = readFromFile();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                } catch (ClassNotFoundException e) {
-                    e.printStackTrace();
-                }
-
-                mAdapter.addListToAdapter(tmpList);
-                mAmountSpent.setText(mAdapter.getTotalAmount());
-                mAdapter.notifyDataSetChanged();
-            }
-        });
-
-        mSaveButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                saveToFile();
-            }
-        });
 
         mAddButton.setOnClickListener(new View.OnClickListener() {
             @Override

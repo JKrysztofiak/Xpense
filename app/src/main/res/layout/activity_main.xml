@@ -83,20 +83,6 @@
             android:textSize="36sp" />
 
         <Button
-            android:id="@+id/saveButton"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="@android:string/VideoView_error_button" />
-
-        <Button
-            android:id="@+id/syncButton"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="@string/add_button_text" />
-
-        <Button
             android:id="@+id/removeItemButton"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
