@@ -4,21 +4,28 @@
     android:layout_height="wrap_content"
     android:orientation="horizontal">
 
+    <Space
+        android:layout_width="32dp"
+        android:layout_height="match_parent" />
+
     <TextView
         android:id="@+id/singleItemNameLabel"
-        android:layout_width="179dp"
+        android:layout_width="84dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        android:gravity="center"
+        android:fontFamily="@font/open_sans"
+        android:gravity="clip_horizontal|center_horizontal|center_vertical"
         android:text="@string/single_item_name_label"
         android:textColor="@color/primary_text"
         android:textSize="24sp" />
 
+
     <TextView
         android:id="@+id/singleItemPriceLabel"
-        android:layout_width="wrap_content"
+        android:layout_width="47dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
+        android:fontFamily="@font/open_sans_condensed_light"
         android:gravity="left|center_vertical"
         android:text="@string/single_item_price_label"
         android:textColor="@color/primary_text"

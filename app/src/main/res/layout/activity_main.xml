@@ -4,69 +4,25 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorAccent"
     tools:context=".MainActivity"
     tools:layout_editor_absoluteY="81dp">
-
-    <LinearLayout
-        android:id="@+id/addBoxView"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <EditText
-            android:id="@+id/itemNameInput"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:text="@string/item_name_input_text"
-            android:textColor="@color/secondary_text" />
-
-        <EditText
-            android:id="@+id/itemPriceInput"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:ems="10"
-            android:inputType="numberDecimal"
-            android:text="@string/item_price_input_text"
-            android:textColor="@color/secondary_text" />
-
-        <Button
-            android:id="@+id/addItemButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@color/colorAccent"
-            android:text="@string/add_button_text" />
-    </LinearLayout>
-
-    <ListView
-        android:id="@+id/itemListView"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@id/amountBoxView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/addBoxView" />
 
     <LinearLayout
         android:id="@+id/amountBoxView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/primary_light"
+        android:background="@color/colorPrimaryDark"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/spentLabel"
             android:layout_width="169dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:fontFamily="@font/open_sans"
             android:gravity="center"
             android:text="@string/spent_label_text"
             android:textColor="@color/primary_text"
@@ -74,9 +30,10 @@
 
         <TextView
             android:id="@+id/spentAmountLabel"
-            android:layout_width="216dp"
-            android:layout_height="wrap_content"
+            android:layout_width="152dp"
+            android:layout_height="match_parent"
             android:layout_weight="1"
+            android:fontFamily="@font/open_sans"
             android:gravity="center"
             android:text="@string/spent_amount_label_text"
             android:textColor="@color/primary_text"
@@ -84,11 +41,62 @@
 
         <Button
             android:id="@+id/removeItemButton"
-            android:layout_width="wrap_content"
+            android:layout_width="80px"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@android:color/holo_red_light"
             android:text="@string/remove_button_text" />
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/itemListView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@color/primary_light"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/amountBoxView"
+        app:layout_constraintBottom_toTopOf="@id/addBoxView"/>
+
+    <LinearLayout
+        android:id="@+id/addBoxView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@color/primary_light"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <EditText
+            android:id="@+id/itemNameInput"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:fontFamily="@font/open_sans"
+            android:hint="@string/item_name_input_text"
+            android:inputType="textPersonName"
+            android:textColor="@color/primary_text" />
+
+        <EditText
+            android:id="@+id/itemPriceInput"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:fontFamily="@font/open_sans"
+            android:hint="@string/item_price_input_text"
+            android:inputType="numberDecimal"
+            android:textColor="@color/primary_text" />
+
+        <Button
+            android:id="@+id/addItemButton"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/colorAccent"
+            android:text="@string/add_button_text" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

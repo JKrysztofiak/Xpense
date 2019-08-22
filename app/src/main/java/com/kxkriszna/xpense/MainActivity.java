@@ -51,7 +51,16 @@ public class MainActivity extends AppCompatActivity {
         mAddButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                addItem();
+
+                try {
+                    addItem();
+                }catch (NumberFormatException e){
+
+                }
+
+                mItemNameInput.getText().clear();
+                mItemPriceInput.getText().clear();
+
             }
         });
 
@@ -85,20 +94,17 @@ public class MainActivity extends AppCompatActivity {
         return tmp;
     }
 
-    private void addItem(){
+    private void addItem() throws NumberFormatException{
         Log.d("Xpense","I SENT SOMETHING");
 
         String nameInput = mItemNameInput.getText().toString();
         double priceInput = Double.valueOf(mItemPriceInput.getText().toString());
 
-        if(!nameInput.equals("") && priceInput!=0 ){
+        if(!nameInput.equals("") && priceInput!=0){
             SingleItem object = new SingleItem(nameInput,priceInput);
 
 
             mAdapter.addItemToAdapter(object);
-
-            mItemPriceInput.setText("price");
-            mItemNameInput.setText("name");
 
             mAmountSpent.setText(mAdapter.getTotalAmount());
 

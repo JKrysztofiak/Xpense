@@ -4,7 +4,7 @@
     <string name="item_price_input_text">price</string>
     <string name="add_button_text">+</string>
     
-    <string name="spent_label_text">Spent:</string>
+    <string name="spent_label_text">SPENT:</string>
     <string name="spent_amount_label_text">0</string>
     <string name="remove_button_text">-</string>
 
