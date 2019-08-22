@@ -116,8 +116,6 @@ public class MainActivity extends AppCompatActivity {
         ArrayList<SingleItem> tmp = (ArrayList<SingleItem>) is.readObject();
         is.close();
         fis.close();
-
-        mAdapter.notifyDataSetChanged();
         return tmp;
     }
 
@@ -151,8 +149,18 @@ public class MainActivity extends AppCompatActivity {
     public void onStart(){
         super.onStart();
 
-        mAdapter = new ItemListAdapter(this,itemList);
+        //TODO CLEANUP!
+
+        try {
+            mAdapter = new ItemListAdapter(this,readFromFile());
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
         mListView.setAdapter(mAdapter);
+
+        mAmountSpent.setText(mAdapter.getTotalAmount());
     }
 
     @Override
