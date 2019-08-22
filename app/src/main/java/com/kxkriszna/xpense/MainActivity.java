@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -21,8 +22,8 @@ public class MainActivity extends AppCompatActivity {
 
     private EditText mItemNameInput;
     private EditText mItemPriceInput;
-    private Button mAddButton;
-    private Button mRemoveButton;
+    private ImageButton mAddButton;
+    private ImageButton mRemoveButton;
     private ListView mListView;
     private TextView mAmountSpent;
     private ItemListAdapter mAdapter;
@@ -39,8 +40,8 @@ public class MainActivity extends AppCompatActivity {
 
         mItemNameInput = (EditText) findViewById(R.id.itemNameInput);
         mItemPriceInput = (EditText) findViewById(R.id.itemPriceInput);
-        mAddButton = (Button) findViewById(R.id.addItemButton);
-        mRemoveButton = (Button) findViewById(R.id.removeItemButton);
+        mAddButton = (ImageButton) findViewById(R.id.addItemButton);
+        mRemoveButton = (ImageButton) findViewById(R.id.removeItemButton);
         mAmountSpent = (TextView) findViewById(R.id.spentAmountLabel);
         mListView = (ListView) findViewById(R.id.itemListView);
 

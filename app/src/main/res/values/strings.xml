@@ -10,5 +10,6 @@
 
     <string name="single_item_name_label">item1</string>
     <string name="single_item_price_label">123.4</string>
+    <string name="date_label">01/01/2001</string>
     
 </resources>

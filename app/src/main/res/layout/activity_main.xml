@@ -39,13 +39,15 @@
             android:textColor="@color/primary_text"
             android:textSize="36sp" />
 
-        <Button
+
+        <ImageButton
             android:id="@+id/removeItemButton"
-            android:layout_width="80px"
+            android:layout_width="27dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@android:color/holo_red_light"
-            android:text="@string/remove_button_text" />
+            android:background="@null"
+            android:scaleType="fitCenter"
+            app:srcCompat="@drawable/back" />
     </LinearLayout>
 
     <ListView
@@ -76,7 +78,7 @@
             android:ems="10"
             android:fontFamily="@font/open_sans"
             android:hint="@string/item_name_input_text"
-            android:inputType="textPersonName"
+            android:inputType="textCapSentences"
             android:textColor="@color/primary_text" />
 
         <EditText
@@ -90,13 +92,14 @@
             android:inputType="numberDecimal"
             android:textColor="@color/primary_text" />
 
-        <Button
+        <ImageButton
             android:id="@+id/addItemButton"
-            android:layout_width="120dp"
-            android:layout_height="wrap_content"
+            android:layout_width="130dp"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@color/colorAccent"
-            android:text="@string/add_button_text" />
+            android:background="@null"
+            android:scaleType="fitCenter"
+            app:srcCompat="@drawable/check2" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,34 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal">
 
-    <Space
-        android:layout_width="32dp"
-        android:layout_height="match_parent" />
+    <ImageView
+        android:id="@+id/dollarImage"
+        android:layout_width="2dp"
+        android:layout_height="31dp"
+        android:layout_gravity="clip_vertical|center_vertical"
+        android:layout_weight="1"
+        android:scaleType="fitCenter"
+        app:srcCompat="@drawable/money" />
 
     <TextView
         android:id="@+id/singleItemNameLabel"
-        android:layout_width="84dp"
+        android:layout_width="100dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:fontFamily="@font/open_sans"
-        android:gravity="clip_horizontal|center_horizontal|center_vertical"
+        android:gravity="clip_vertical|left|center_vertical"
         android:text="@string/single_item_name_label"
         android:textColor="@color/primary_text"
         android:textSize="24sp" />
 
 
-    <TextView
-        android:id="@+id/singleItemPriceLabel"
-        android:layout_width="47dp"
-        android:layout_height="match_parent"
+    <LinearLayout
+        android:layout_width="38dp"
+        android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:fontFamily="@font/open_sans_condensed_light"
-        android:gravity="left|center_vertical"
-        android:text="@string/single_item_price_label"
-        android:textColor="@color/primary_text"
-        android:textSize="24sp" />
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/dateLabel"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            android:gravity="bottom|clip_horizontal|clip_vertical|center_vertical"
+            android:text="@string/date_label"
+            android:textColor="@color/secondary_text" />
+
+        <TextView
+            android:id="@+id/singleItemPriceLabel"
+            android:layout_width="88dp"
+            android:layout_height="51dp"
+            android:layout_weight="1"
+            android:fontFamily="@font/open_sans_condensed_light"
+            android:gravity="clip_horizontal|clip_vertical|top|left"
+            android:text="@string/single_item_price_label"
+            android:textColor="@color/red"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+    </LinearLayout>
 
 </LinearLayout>

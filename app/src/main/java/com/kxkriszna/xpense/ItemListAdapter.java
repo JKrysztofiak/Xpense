@@ -16,7 +16,11 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 public class ItemListAdapter extends BaseAdapter {
 
@@ -33,6 +37,7 @@ public class ItemListAdapter extends BaseAdapter {
     static class ViewHolder{
         TextView itemName;
         TextView itemPrice;
+        TextView itemDate;
         LinearLayout.LayoutParams params;
     }
 
@@ -75,6 +80,23 @@ public class ItemListAdapter extends BaseAdapter {
         fos.close();
     }
 
+    public String getDate(){
+        String pattern = "dd/MM/yyyy";
+
+        // Create an instance of SimpleDateFormat used for formatting
+        // the string representation of date according to the chosen pattern
+        DateFormat df = new SimpleDateFormat(pattern);
+
+        // Get the today date using Calendar object.
+        Date today = Calendar.getInstance().getTime();
+        // Using DateFormat format method we can create a string
+        // representation of a date with the defined format.
+        String todayAsString = df.format(today);
+
+        // Print the result!
+        return todayAsString;
+    }
+
     @Override
     public int getCount() {
         return itemList.size();
@@ -101,6 +123,7 @@ public class ItemListAdapter extends BaseAdapter {
             final ViewHolder holder = new ViewHolder();
             holder.itemName = (TextView) view.findViewById(R.id.singleItemNameLabel);
             holder.itemPrice = (TextView) view.findViewById(R.id.singleItemPriceLabel);
+            holder.itemDate = (TextView) view.findViewById(R.id.dateLabel);
             holder.params = (LinearLayout.LayoutParams) holder.itemName.getLayoutParams();
             view.setTag(holder);
         }
@@ -112,7 +135,9 @@ public class ItemListAdapter extends BaseAdapter {
         holder.itemName.setText(itemName);
 
         String price = String.valueOf(item.getItemPrice());
-        holder.itemPrice.setText(price);
+        holder.itemPrice.setText("-"+price);
+
+        holder.itemDate.setText(getDate());
 
         return view;
     }
