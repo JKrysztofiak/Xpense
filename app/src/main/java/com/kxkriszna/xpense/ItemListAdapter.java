@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -40,6 +41,7 @@ public class ItemListAdapter extends BaseAdapter {
         TextView itemName;
         TextView itemPrice;
         TextView itemDate;
+        ImageView typeImage;
         LinearLayout.LayoutParams params;
     }
 
@@ -140,6 +142,7 @@ public class ItemListAdapter extends BaseAdapter {
             holder.itemName = (TextView) view.findViewById(R.id.singleItemNameLabel);
             holder.itemPrice = (TextView) view.findViewById(R.id.singleItemPriceLabel);
             holder.itemDate = (TextView) view.findViewById(R.id.dateLabel);
+            holder.typeImage = (ImageView) view.findViewById(R.id.dollarImage);
             holder.params = (LinearLayout.LayoutParams) holder.itemName.getLayoutParams();
             view.setTag(holder);
         }
@@ -160,6 +163,26 @@ public class ItemListAdapter extends BaseAdapter {
         else {
             holder.itemPrice.setTextColor(Color.parseColor("#e53935"));
             holder.itemPrice.setText("-"+priceText);
+        }
+
+        int type = item.getType();
+
+        switch (type){
+            case 0:
+                holder.typeImage.setImageResource(R.drawable.money);
+                break;
+            case 1:
+                holder.typeImage.setImageResource(R.drawable.food);
+                break;
+            case 2:
+                holder.typeImage.setImageResource(R.drawable.culture);
+                break;
+            case 3:
+                holder.typeImage.setImageResource(R.drawable.returner);
+                break;
+            case 4:
+                holder.typeImage.setImageResource(R.drawable.special);
+                break;
         }
 
 

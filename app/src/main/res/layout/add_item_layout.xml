@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <EditText
         android:id="@+id/itemNameInputTMP"
@@ -12,18 +15,22 @@
         android:fontFamily="@font/open_sans"
         android:hint="@string/item_name_input_text"
         android:inputType="textCapSentences"
-        android:textColor="@color/primary_text" />
+        android:textColor="@color/primary_text"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 
     <LinearLayout
+        android:id="@+id/priceBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@id/itemNameInputTMP">
 
         <EditText
             android:id="@+id/itemPriceInputTMP"
-            android:layout_width="wrap_content"
+            android:layout_width="271dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:ems="10"
             android:fontFamily="@font/open_sans"
             android:hint="@string/item_price_input_text"
@@ -32,26 +39,94 @@
 
         <ImageButton
             android:id="@+id/positiveButton"
-            android:layout_width="36dp"
+            android:layout_width="57dp"
             android:layout_height="match_parent"
-            android:layout_weight="1"
             android:background="@null"
             android:scaleType="fitCenter"
             app:srcCompat="@drawable/add_unclicked" />
 
         <ImageButton
             android:id="@+id/negativeButton"
-            android:layout_width="36dp"
+            android:layout_width="57dp"
             android:layout_height="match_parent"
-            android:layout_weight="1"
             android:background="@null"
             android:scaleType="fitCenter"
             app:srcCompat="@drawable/remove_clicked" />
     </LinearLayout>
 
-    <Button
-        android:id="@+id/addItemButtonTMP"
+
+    <LinearLayout
+        android:id="@+id/typeBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/add_button_text" />
-</LinearLayout>
+        android:orientation="horizontal"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/priceBox">
+
+        <ImageButton
+            android:id="@+id/type1Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/food"
+            android:background="@null"
+            android:scaleType="fitCenter"/>
+
+        <ImageButton
+            android:id="@+id/type2Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/culture"
+            android:background="@null"
+            android:scaleType="fitCenter"/>
+
+        <ImageButton
+            android:id="@+id/type3Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/returner"
+            android:background="@null"
+            android:scaleType="fitCenter"/>
+
+        <ImageButton
+            android:id="@+id/type4Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/special"
+            android:background="@null"
+            android:scaleType="fitCenter"/>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/typeLabel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="clip_horizontal|center|clip_vertical|center_vertical"
+        android:textColor="@color/primary_text"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/typeBox" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <Button
+            android:id="@+id/addItemButtonTMP"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorPrimary"
+            android:text="@string/add_button_text"/>
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

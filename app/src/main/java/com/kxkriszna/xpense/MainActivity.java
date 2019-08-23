@@ -87,14 +87,14 @@ public class MainActivity extends AppCompatActivity {
         return tmp;
     }
 
-    private void addItem(String name, String price, boolean prop) throws NumberFormatException{
+    private void addItem(String name, String price, boolean prop, int type) throws NumberFormatException{
         Log.d("Xpense","I SENT SOMETHING");
 
         String nameInput = name;
         double priceInput = Double.valueOf(price);
 
         if(!nameInput.equals("") && priceInput!=0){
-            SingleItem object = new SingleItem(nameInput,priceInput,prop);
+            SingleItem object = new SingleItem(nameInput,priceInput,prop, type);
 
 
             mAdapter.addItemToAdapter(object);
@@ -114,10 +114,10 @@ public class MainActivity extends AppCompatActivity {
     public void onStart(){
         super.onStart();
 
-        //TODO CLEANUP!
+        //TODO TUTAJ ZMAINYYY!
 
         try {
-            mAdapter = new ItemListAdapter(this,readFromFile());
+            mAdapter = new ItemListAdapter(this,readFromFile()); //
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
@@ -136,12 +136,16 @@ public class MainActivity extends AppCompatActivity {
         String itemName = intent.getStringExtra("Name");
         String itemPrice = intent.getStringExtra("Price");
         boolean prop = intent.getBooleanExtra("Prop",false);
+        int type = intent.getIntExtra("Type",0);
 
         if(itemName != null){
-            addItem(itemName, itemPrice,prop);
+            addItem(itemName, itemPrice,prop, type);
         }else {
 
         }
+
+        intent.removeExtra("Name");
+
     }
 
     @Override

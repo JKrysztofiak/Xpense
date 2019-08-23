@@ -9,6 +9,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 public class AddItemController extends AppCompatActivity {
 
@@ -18,6 +21,15 @@ public class AddItemController extends AppCompatActivity {
     ImageButton mPositiveButton;
     ImageButton mNegativeButton;
     Button mAddButton;
+
+    ImageButton type1;
+    ImageButton type2;
+    ImageButton type3;
+    ImageButton type4;
+    TextView label;
+
+    private int type = 0;
+
 
 
     @Override
@@ -33,6 +45,12 @@ public class AddItemController extends AppCompatActivity {
         mNegativeButton = (ImageButton) findViewById(R.id.negativeButton);
         mAddButton = (Button) findViewById(R.id.addItemButtonTMP);
 
+        type1 = (ImageButton) findViewById(R.id.type1Button);
+        type2 = (ImageButton) findViewById(R.id.type2Button);
+        type3 = (ImageButton) findViewById(R.id.type3Button);
+        type4 = (ImageButton) findViewById(R.id.type4Button);
+
+        label = (TextView) findViewById(R.id.typeLabel);
 
 
         mAddButton.setOnClickListener(new View.OnClickListener() {
@@ -49,6 +67,7 @@ public class AddItemController extends AppCompatActivity {
                     myIntent.putExtra("Name",itemName);
                     myIntent.putExtra("Price",itemPrice);
                     myIntent.putExtra("Prop",positive);
+                    myIntent.putExtra("Type",type);
 
                     startActivity(myIntent);
 
@@ -83,6 +102,38 @@ public class AddItemController extends AppCompatActivity {
                     mPositiveButton.setImageResource(R.drawable.add_unclicked);
                     mNegativeButton.setImageResource(R.drawable.remove_clicked);
                 }
+            }
+        });
+
+        type1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                type = 1;
+                label.setText("Food");
+            }
+        });
+
+        type2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                type = 2;
+                label.setText("Social life");
+            }
+        });
+
+        type3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                type = 3;
+                label.setText("Return");
+            }
+        });
+
+        type4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                type = 4;
+                label.setText("Special");
             }
         });
 
