@@ -11,8 +11,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
@@ -87,7 +85,7 @@ public class ItemListAdapter extends BaseAdapter {
         fos.close();
     }
 
-    public String getDate(){
+    public String getCurrentDate(){
         String pattern = "dd/MM/yyyy";
 
         // Create an instance of SimpleDateFormat used for formatting
@@ -145,7 +143,8 @@ public class ItemListAdapter extends BaseAdapter {
         String priceText = String.format("%.2f",item.getItemPrice());
         holder.itemPrice.setText("-"+priceText);
 
-        holder.itemDate.setText(getDate());
+        String dateCreated = item.getDate();
+        holder.itemDate.setText(dateCreated);
 
         return view;
     }
