@@ -2,8 +2,8 @@
     <string name="app_name">Xpense</string>
     <string name="item_name_input_text">Item name</string>
     <string name="item_price_input_text">price</string>
-    <string name="add_button_text">+</string>
-    
+    <string name="add_button_text">Add Item</string>
+
     <string name="spent_label_text">SPENT:</string>
     <string name="spent_amount_label_text">0</string>
     <string name="remove_button_text">-</string>
@@ -11,5 +11,5 @@
     <string name="single_item_name_label">item1</string>
     <string name="single_item_price_label">123.4</string>
     <string name="date_label">01/01/2001</string>
-    
+
 </resources>

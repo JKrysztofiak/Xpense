@@ -78,36 +78,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
-        <EditText
-            android:id="@+id/itemNameInput"
-            android:layout_width="wrap_content"
+        <Button
+            android:id="@+id/tempButton"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:ems="10"
-            android:fontFamily="@font/open_sans"
-            android:hint="@string/item_name_input_text"
-            android:inputType="textCapSentences"
-            android:textColor="@color/primary_text" />
+            android:background="@color/colorPrimaryDark"
+            android:text="@string/add_button_text" />
 
-        <EditText
-            android:id="@+id/itemPriceInput"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:ems="10"
-            android:fontFamily="@font/open_sans"
-            android:hint="@string/item_price_input_text"
-            android:inputType="numberDecimal"
-            android:textColor="@color/primary_text" />
-
-        <ImageButton
-            android:id="@+id/addItemButton"
-            android:layout_width="130dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@null"
-            android:scaleType="fitCenter"
-            app:srcCompat="@drawable/image_selector" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

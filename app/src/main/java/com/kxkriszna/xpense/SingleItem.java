@@ -10,11 +10,16 @@ public class SingleItem implements Serializable {
 
     private String itemNameSingle;
     private double itemPriceSingle;
+    private boolean positive;
     private String dateAdded;
 
-    public SingleItem(String itemNameObject, double itemPriceObject) {
+    public SingleItem(String itemNameObject, double itemPriceObject, boolean adding) {
         this.itemNameSingle = itemNameObject;
+        positive = adding;
         this.itemPriceSingle = itemPriceObject;
+
+
+
         dateAdded = getCurrentDate();
     }
 
@@ -47,6 +52,10 @@ public class SingleItem implements Serializable {
 
     public String getDate(){
         return dateAdded;
+    }
+
+    public boolean getProperties(){
+        return positive;
     }
 
 

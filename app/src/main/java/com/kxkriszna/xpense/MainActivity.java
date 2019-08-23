@@ -2,6 +2,7 @@ package com.kxkriszna.xpense;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -26,7 +27,8 @@ public class MainActivity extends AppCompatActivity {
     private ImageButton mRemoveButton;
     private ListView mListView;
     private TextView mAmountSpent;
-    private ItemListAdapter mAdapter;
+    public static ItemListAdapter mAdapter;
+    public Button mChangeViewButton;
     private final String FILE_NAME = "itemsDB";
 
 
@@ -38,30 +40,20 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mItemNameInput = (EditText) findViewById(R.id.itemNameInput);
-        mItemPriceInput = (EditText) findViewById(R.id.itemPriceInput);
-        mAddButton = (ImageButton) findViewById(R.id.addItemButton);
         mRemoveButton = (ImageButton) findViewById(R.id.removeItemButton);
         mAmountSpent = (TextView) findViewById(R.id.spentAmountLabel);
         mListView = (ListView) findViewById(R.id.itemListView);
 
+        mChangeViewButton = (Button) findViewById(R.id.tempButton);
+
         //TODO Wczytywanie wartosci z pliku
         itemList = new ArrayList<>();
 
-
-        mAddButton.setOnClickListener(new View.OnClickListener() {
+        mChangeViewButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                try {
-                    addItem();
-                }catch (NumberFormatException e){
-
-                }
-
-                mItemNameInput.getText().clear();
-                mItemPriceInput.getText().clear();
-
+                Intent myIntent1 = new Intent(MainActivity.this, AddItemController.class);
+                startActivity(myIntent1);
             }
         });
 
@@ -95,14 +87,14 @@ public class MainActivity extends AppCompatActivity {
         return tmp;
     }
 
-    private void addItem() throws NumberFormatException{
+    private void addItem(String name, String price, boolean prop) throws NumberFormatException{
         Log.d("Xpense","I SENT SOMETHING");
 
-        String nameInput = mItemNameInput.getText().toString();
-        double priceInput = Double.valueOf(mItemPriceInput.getText().toString());
+        String nameInput = name;
+        double priceInput = Double.valueOf(price);
 
         if(!nameInput.equals("") && priceInput!=0){
-            SingleItem object = new SingleItem(nameInput,priceInput);
+            SingleItem object = new SingleItem(nameInput,priceInput,prop);
 
 
             mAdapter.addItemToAdapter(object);
@@ -134,6 +126,22 @@ public class MainActivity extends AppCompatActivity {
         mListView.setAdapter(mAdapter);
 
         mAmountSpent.setText(mAdapter.getTotalAmount());
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+
+        Intent intent = getIntent();
+        String itemName = intent.getStringExtra("Name");
+        String itemPrice = intent.getStringExtra("Price");
+        boolean prop = intent.getBooleanExtra("Prop",false);
+
+        if(itemName != null){
+            addItem(itemName, itemPrice,prop);
+        }else {
+
+        }
     }
 
     @Override

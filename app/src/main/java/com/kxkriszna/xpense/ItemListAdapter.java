@@ -2,6 +2,7 @@ package com.kxkriszna.xpense;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Color;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +11,9 @@ import android.widget.BaseAdapter;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.core.content.ContextCompat;
+import androidx.core.content.res.ResourcesCompat;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -40,6 +44,7 @@ public class ItemListAdapter extends BaseAdapter {
     }
 
     public void addItemToAdapter(SingleItem item){
+        Log.d("Xpense", "ADDING ITEM");
         itemList.add(0,item);
         notifyDataSetChanged();
     }
@@ -67,7 +72,13 @@ public class ItemListAdapter extends BaseAdapter {
 
         double amount = 0;
         for (SingleItem item: itemList){
-            amount+=item.getItemPrice();
+            if(item.getProperties()){
+                amount-=item.getItemPrice();
+            }
+            else{
+                amount+=item.getItemPrice();
+            }
+
         }
 
         String numberToString = String.format("%.2f",amount);
@@ -141,7 +152,17 @@ public class ItemListAdapter extends BaseAdapter {
 
         //String price = String.valueOf(item.getItemPrice());
         String priceText = String.format("%.2f",item.getItemPrice());
-        holder.itemPrice.setText("-"+priceText);
+
+        if(item.getProperties()){
+            holder.itemPrice.setTextColor(Color.parseColor("#4CAF50"));
+            holder.itemPrice.setText("+"+priceText);
+        }
+        else {
+            holder.itemPrice.setTextColor(Color.parseColor("#e53935"));
+            holder.itemPrice.setText("-"+priceText);
+        }
+
+
 
         String dateCreated = item.getDate();
         holder.itemDate.setText(dateCreated);
